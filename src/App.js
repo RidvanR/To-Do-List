@@ -19,7 +19,7 @@ function Todo({ todo, index, completeTodo, removeTodo }) {
           <button class="k" type="button" data-toggle="dropdown">
           <span class="caret"></span><img class="kb" alt="nicht" src="https://icons.getbootstrap.com/assets/icons/chat-dots.svg" ></img></button>
             <ul class="dropdown-menu">
-            <li><input type="text" class="fname" name="fname"></input></li>
+            <input type="text" class="fname"  name="fname" placeholder="Kommentar abgeben"></input>
             </ul>
             </div> 
 
@@ -29,7 +29,11 @@ function Todo({ todo, index, completeTodo, removeTodo }) {
   );
 }
 
-
+function speichern() {
+  var key=document.getElementById('key').value;
+  var data= document.getElementById('data').value;
+  window.localStorage.setItem(key, data); 
+}
 
 function TodoForm({ addTodo }) {
   const [value, setValue] = React.useState("");

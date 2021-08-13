@@ -73,4 +73,6 @@
       height: 12px;
   }
 
-  
+  li {
+      text-decoration: none;
+  }
