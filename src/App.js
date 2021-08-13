@@ -1,89 +1,153 @@
 import './App.css';
 import React from "react"; 
 
-function Todo({ todo, index, completeTodo, removeTodo }) {
-  return (
-    <div
-      className="todo"
-      style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
-    >
-      {todo.text}
-      <div>
-        <button class="c" onClick={() => completeTodo(index)}>Complete</button>
-        <button class="x" onClick={() => removeTodo(index)}>x</button>
-      </div>
-    </div>
-  );
-}
 
-function TodoForm({ addTodo }) {
-  const [value, setValue] = React.useState("");
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (!value) return;
-    addTodo(value);
-    setValue("");
-  };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        className="input"
-        value={value}
-        onChange={e => setValue(e.target.value)}
-      />
-    </form>
-  );
-}
 
 function App() {
-
-  const [todos, setTodos] = React.useState([
-    {
-      text: "To-Do Liste programmieren",
-      isCompleted: true
-    }
-   
-   
-  ]);
-
-  const addTodo = text => {
-    const newTodos = [...todos, { text }];
-    setTodos(newTodos);
-  };
-
-  const completeTodo = index => {
-    const newTodos = [...todos];
-    newTodos[index].isCompleted = true;
-    setTodos(newTodos);
-  };
-
-  const removeTodo = index => {
-    const newTodos = [...todos];
-    newTodos.splice(index, 1);
-    setTodos(newTodos);
-  };
-
   return (
-    <div className="app">
-      <div className="todo-list">
-        {todos.map((todo, index) => (
-          <Todo
-            key={index}
-            index={index}
-            todo={todo}
-            completeTodo={completeTodo}
-            removeTodo={removeTodo}
-          />
-        ))}
-        <TodoForm addTodo={addTodo} />
-      </div>
-    </div>
-  );
-}
+    <div className="App">
 
+
+<section class="todoapp">
+			<header class="header">
+				<h1>To-Do-Liste</h1>
+				<input class="new-todo" placeholder="Was muss gemacht werden?" autofocus></input>
+			</header>
+			<section class="main">
+				<input id="toggle-all" class="toggle-all" type="checkbox"></input>
+				<label for="toggle-all">Mark all as complete</label>
+				<ul class="todo-list"></ul>
+			</section>
+	
+			<footer class="footer">
+				<span class="todo-count"><strong>0</strong> item left</span>
+			
+			
+				<button class="clear-completed">Clear completed</button>
+			</footer>
+		</section>
+
+      
+
+
+      
+    </div>
+  )
+
+  
+  
+  
+ 
+
+  
+
+
+
+  
+    }
+
+    const KEY_ENTER = 13
+
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const newTodoElement = document.querySelector(".new-todo")
+      const todoListElement = document.querySelector(".todo-list")
+      const footerElement = document.querySelector(".footer")
+      const todoCountElement = document.querySelector(".todo-count strong")
+      const clearCompletedElement = document.querySelector(".clear-completed")
+    
+      const refreshFooter = () => {
+        if (todoListElement.children.length === 0) {
+          footerElement.style.display = "none"
+        } else {
+          footerElement.style.display = ""
+        }
+    
+        
+        let todoCounter = todoListElement.querySelectorAll("li:not(.completed)").length
+        todoCountElement.innerText = todoCounter
+    
+        let completedCounter = todoListElement.querySelectorAll("li.completed").length
+        if (completedCounter === 0) {
+          clearCompletedElement.style.display = "none"
+        } else {
+          clearCompletedElement.style.display = ""
+        }
+      }
+      refreshFooter()
+    
+      const addCallbacksForLi = (liElement) => {
+        const checkboxElement = liElement.querySelector(".toggle")
+        const destroyButtonElement = liElement.querySelector(".destroy")
+    
+        checkboxElement.addEventListener("change", () => {
+          if (checkboxElement.checked) {
+            liElement.classList.add("completed")
+          } else {
+            liElement.classList.remove("completed")
+          }
+    
+          refreshFooter()
+        })
+    
+        destroyButtonElement.addEventListener("click", () => {
+          liElement.remove()
+    
+          refreshFooter()
+        })
+      }
+    
+    
+      newTodoElement.addEventListener("keypress", (event) => {
+        if (event.which === KEY_ENTER && newTodoElement.value !== "") {
+    
+          const newButtonElement = document.createElement("button")
+          newButtonElement.classList.add("destroy")
+          
+          const newLabelElement = document.createElement("label")
+          newLabelElement.appendChild(
+            document.createTextNode(newTodoElement.value)
+          )
+    
+          const newInputCheckbox = document.createElement("input")
+          newInputCheckbox.type = "checkbox"
+          newInputCheckbox.classList.add("toggle")
+    
+          const newDivElement = document.createElement("div")
+          newDivElement.classList.add("view")
+          newDivElement.appendChild(newInputCheckbox)
+          newDivElement.appendChild(newLabelElement)
+          newDivElement.appendChild(newButtonElement)
+    
+          const newLiElement = document.createElement("li")
+          newLiElement.appendChild(newDivElement)
+    
+          addCallbacksForLi(newLiElement)
+    
+          todoListElement.prepend(newLiElement)
+    
+          newTodoElement.value = ""
+    
+          refreshFooter()
+        }
+      })
+    
+    
+      clearCompletedElement.addEventListener("click", (event) => {
+        const completedLiElements = todoListElement.querySelectorAll("li.completed")
+        for(const completedLiElement of completedLiElements) {
+          completedLiElement.remove()
+        }
+    
+        refreshFooter()
+      })
+    });
+   
+   
+  
 
 
 
