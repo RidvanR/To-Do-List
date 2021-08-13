@@ -15,7 +15,13 @@ function Todo({ todo, index, completeTodo, removeTodo }) {
       <div>
         <button class="c" onClick={() => completeTodo(index)}><img class="b" alt="nichts" src="https://icons.getbootstrap.com/assets/icons/check-lg.svg"></img> </button>
         <button class="x" onClick={() => removeTodo(index)}>x</button>
-        <button class="k" onClick={() => removeTodo(index)}><img class="kb" alt="nicht" src="https://icons.getbootstrap.com/assets/icons/chat-dots.svg" ></img> </button>
+        <div class="dropdown">
+          <button class="k" type="button" data-toggle="dropdown">
+          <span class="caret"></span><img class="kb" alt="nicht" src="https://icons.getbootstrap.com/assets/icons/chat-dots.svg" ></img></button>
+            <ul class="dropdown-menu">
+            <li><input type="text" class="fname" name="fname"></input></li>
+            </ul>
+            </div> 
 
         
       </div>
@@ -95,6 +101,10 @@ function App() {
         ))}
         <TodoForm addTodo={addTodo} />
       </div>
+
+      
+
+      
 
     </div>
 
