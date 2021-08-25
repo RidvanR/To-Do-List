@@ -1,7 +1,10 @@
+import { Checkmark } from 'grommet-icons';
 import React from 'react';
-import "./components/Todo/Todo.css";
+import "./Todo.css";
+import { Button, Box, Grommet, } from 'grommet';
+import { Checkmark } from 'grommet-icons';
 
-export function Todo({ todo, index,  addComment, }) {
+export function Todo({ todo, index,  addComment, removeTodo, completeTodo }) {
   const  [ value, setValue,] = React.useState("");
   const handleSubmit = f => {
     f.preventDefault();
@@ -17,6 +20,14 @@ export function Todo({ todo, index,  addComment, }) {
         className="todo"
         style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
       >
+		<Grommet>
+		<Button 
+		className="x" onClick={() => removeTodo(index)} 
+		icon={<Checkmark />}
+		/>
+        <Button 
+		className="c" onClick={() => completeTodo(index)} /> 
+		</Grommet>
         {todo.text}
         {todo.comments && todo.comments.map(text => <span>{text}</span>) 
         }

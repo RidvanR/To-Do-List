@@ -1,5 +1,9 @@
-import React from 'react'
-import "./compoents/TodoList/TodoList.css"
+import React from 'react';
+import "./TodoList.css"; 
+import { Todo } from '../Todo/Todo';
+import { TodoForm } from '../AddToDo';
+import { Button, Box, Grommet, Main } from 'grommet';
+import {Add} from 'grommet-icons';
 
 export function ToDoList() {
     const addTodo = text => {
@@ -22,6 +26,22 @@ export function ToDoList() {
         setTodos(todo);
       }
 
+	  const handleOpenClick = () => {
+        setFormOpen(true); 
+      };
+
+      const removeTodo = index => {
+        const newTodos = [...todos];
+        newTodos.splice(index, 1);
+        setTodos(newTodos);
+      };
+
+      const completeTodo = index => {
+        const newTodos = [...todos];
+        newTodos[index].isCompleted = true;
+        setTodos(newTodos);
+      };
+
       const [formOpen, setFormOpen] = React.useState(false)
       const [todos, setTodos] = React.useState([
         {
@@ -30,25 +50,31 @@ export function ToDoList() {
         }
        
       ]);
-    return(
-        <div className="todo-list">
+/* Input in Box unten rein machen wie? */ 
 
-        {todos.map((todo, index) => (
+    return(
+			<Grommet>  
+
+		<Main className="todo-list" pad="large">
+			<Button 
+			className="hnzü" 
+			onClick={handleOpenClick} 
+			icon={<Add />}
+			/>
+		{todos.map((todo, index) => (
           <Todo
             key={index}
             index={index}
             todo={todo}
             addComment={addComment}
+			removeTodo={removeTodo}
+			completeTodo={completeTodo}
           />
         ))}
         {formOpen && <TodoForm addTodo={addTodo} />}
-        {buttons.map((buttons) => (
-            <buttons 
-            completeTodo={completeTodo}
-            removeTodo={removeTodo}
-            buttons={buttons}
-         />
-        ))}
-      </div>
-    )
+
+		</Main>
+			</Grommet>
+    );
+
 }
