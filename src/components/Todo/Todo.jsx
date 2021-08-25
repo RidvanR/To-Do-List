@@ -1,8 +1,7 @@
-import { Checkmark } from 'grommet-icons';
 import React from 'react';
 import "./Todo.css";
-import { Button, Box, Grommet, } from 'grommet';
-import { Checkmark } from 'grommet-icons';
+import { Button, Grommet } from 'grommet';
+import { Checkmark, Close } from 'grommet-icons';
 
 export function Todo({ todo, index,  addComment, removeTodo, completeTodo }) {
   const  [ value, setValue,] = React.useState("");
@@ -22,11 +21,13 @@ export function Todo({ todo, index,  addComment, removeTodo, completeTodo }) {
       >
 		<Grommet>
 		<Button 
-		className="x" onClick={() => removeTodo(index)} 
-		icon={<Checkmark />}
+		className="x" onClick={() => removeTodo(index)}
+		icon={<Close />} 
 		/>
         <Button 
-		className="c" onClick={() => completeTodo(index)} /> 
+		className="c" onClick={() => completeTodo(index)}
+		icon={<Checkmark />}
+		 /> 
 		</Grommet>
         {todo.text}
         {todo.comments && todo.comments.map(text => <span>{text}</span>) 
