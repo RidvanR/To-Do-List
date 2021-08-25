@@ -2,7 +2,7 @@ import React from 'react';
 import "./TodoList.css"; 
 import { Todo } from '../Todo/Todo';
 import { TodoForm } from '../AddToDo';
-import { Button, Grommet, Main } from 'grommet';
+import { Button, Grommet, Main, Box } from 'grommet';
 import {Add} from 'grommet-icons';
 
 export function ToDoList() {
@@ -52,12 +52,19 @@ export function ToDoList() {
        
       ]);
 
+
 	  /* Input in Box unten rein machen wie? und Main Stylen wie? */ 
 
     return(
 			<Grommet>  
 
-		<Main className="todo-list" pad="large">
+		<Main className="todo-list" pad="large"
+		background="neutral-2"
+		tag= "main"
+		width= "860px"
+		margin="300px"
+		
+		>
 			<Button 
 			className="hnzü" 
 			onClick={handleOpenClick} 
