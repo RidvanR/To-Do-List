@@ -1,8 +1,7 @@
-import React from 'react';
-import "./TodoList.css"; 
+import React from 'react'; 
 import { Todo } from '../Todo/Todo';
 import { TodoForm } from '../AddToDo';
-import { Button, Grommet, Main, Box } from 'grommet';
+import { Button, Main, Box, Grid } from 'grommet';
 import {Add} from 'grommet-icons';
 
 export function ToDoList() {
@@ -53,24 +52,34 @@ export function ToDoList() {
       ]);
 
 
-	  /* Input in Box unten rein machen wie? und Main Stylen wie? */ 
+	  const Main = (props) => (
+		<Box
+		{...props}
+		/>
+	  );
 
-    return(
-			<Grommet>  
+    return( 
 
 		<Main className="todo-list" pad="large"
 		background="neutral-2"
 		tag= "main"
-		width= "860px"
-		margin="300px"
-		
 		>
+			<Box
+			direction='row'
+			>
 			<Button 
 			className="hnzü" 
 			onClick={handleOpenClick} 
 			icon={<Add />}
+			hoverIndicator={{background:{color:"#3D136D"}}}
 			/>
-		{todos.map((todo, index) => (
+			 {formOpen && <TodoForm addTodo={addTodo} />}
+			</Box>
+		<Grid
+		columns='small'
+		gap='small'
+		>
+			{todos.map((todo, index) => (
           <Todo
             key={index}
             index={index}
@@ -78,10 +87,11 @@ export function ToDoList() {
             addComment={addComment}
 			removeTodo={removeTodo}
 			completeTodo={completeTodo}
-          />
-        ))}
-        {formOpen && <TodoForm addTodo={addTodo} />}
+			/>
+        	))}
+
+		</Grid>
+	
 
 		</Main>
-			</Grommet>
     );}

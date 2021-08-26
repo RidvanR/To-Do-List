@@ -1,43 +1,52 @@
-import './App.css';
 import {ToDoList} from "./components/TodoList/TodoList";
 import React from 'react';
-import { Grommet, Heading, Box} from 'grommet';
+import { Grommet, Header, Heading, Box, Grid} from 'grommet';
 
 
 
 
 function App() {
-
-	const AppBar = (props) => (
-		<Box
-		  tag='header'
-		  direction='row'
-		  text-align='center'
-		  justify='between'
-		  background='brand'
-		  pad={{ left: 'medium', right: 'small', vertical: 'small' }}
-		  elevation='medium'
-		  style={{ zIndex: '1' }}
-		  {...props}
-		/>
-	  );
-  
  
+	const theme = {
+		global:{ 
+			colors: {
+				brand:"#3D138D"
+			},
+			font:{
+				family:"Roboto"
+			}
+		}
+	}
 
   return (
-    
-    <div className="app">
+    <Grommet theme={theme} >
 
-		<Grommet>
-		<AppBar>
-			<Heading level='2' margin='none' > To Do Liste</Heading>
-		</AppBar>
-		</Grommet>
- 
-	   <ToDoList
-	   />
-    
-    </div>
+<Grid className="app"
+rows={['xsmall', 'large']}
+gap="5%"
+>
+
+<Header
+direction='row'
+text-align='center'
+justify='center'
+pad={{ left: 'medium', right: 'small', vertical: 'small' }}
+elevation='medium'
+background="brand"
+style={{ zIndex: '1' }}
+
+> <Heading>To Do Liste</Heading></Header>
+
+
+
+<ToDoList
+/>
+
+</Grid>
+
+
+	</Grommet>
+   
      
 
   );

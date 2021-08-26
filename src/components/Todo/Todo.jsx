@@ -1,7 +1,6 @@
 import React from 'react';
-import "./Todo.css";
-import { Button, Grommet } from 'grommet';
-import { Checkmark, Close } from 'grommet-icons';
+import { Box, Button, TextInput, Text, Card, CardFooter, CardBody, CardHeader } from 'grommet';
+import { Checkmark, Close  } from 'grommet-icons';
 
 export function Todo({ todo, index,  addComment, removeTodo, completeTodo }) {
   const  [ value, setValue,] = React.useState("");
@@ -15,36 +14,44 @@ export function Todo({ todo, index,  addComment, removeTodo, completeTodo }) {
 
 
     return (
-      <div
+      <Card
         className="todo"
         style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
       >
-		<Grommet>
-		<Button 
-		className="x" onClick={() => removeTodo(index)}
-		icon={<Close />} 
-		/>
-        <Button 
-		className="c" onClick={() => completeTodo(index)}
-		icon={<Checkmark />}
-		 /> 
-		</Grommet>
-        {todo.text}
-        {todo.comments && todo.comments.map(text => <span>{text}</span>) 
-        }
-        <div>
+		<CardHeader>
+		{todo.text} 
+		</CardHeader>
+        <CardBody>
+		{todo.comments && todo.comments.map(text => <Text color="#777777">{text}</Text>) }
             <form onSubmit={handleSubmit}>
-              <input id="inputfeld" type="text"  
+              <TextInput
+			  type="text"  
               value={value}
               placeholder="Kommentier dein To Do"
-              onChange={f => setValue(f.target.value)} />
+              onChange={f => setValue(f.target.value)}
+			  
+			  />
 
             </form>
-            
-             
-          
-        </div>
-      </div>
+			 </CardBody>
+
+		<CardFooter
+		direction="row-reverse"
+		justify="start"
+		>
+		<Button secondary
+		icon={<Close/>}
+		color="brand"
+		hoverIndicator={{background:{color:"status-critical"}}}
+		onClick={() => removeTodo(index)}
+		/>
+        <Button secondary
+		hoverIndicator={{background:{color:"status-ok"}}}
+		onClick={() => completeTodo(index)}
+		icon={<Checkmark />}
+		 /> 
+		</CardFooter>
+      </Card>
     );
    
   }
