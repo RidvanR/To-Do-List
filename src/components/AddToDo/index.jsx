@@ -1,21 +1,21 @@
-import React from 'react'; 
-import {TextInput, Form } from 'grommet';
+import React from 'react';
+import { TextInput, Form } from 'grommet';
 
 
 export function TodoForm({ addTodo }) {
-    const  [ value, setValue] = React.useState("");
-    const handleSubmit = e => {
-      e.preventDefault();
-      if (!value) return;
-      addTodo(value);
-      setValue("");
-    };
-    
-    
-  
-    return (
-	<Form onSubmit={handleSubmit}>
-		<TextInput
+	const [value, setValue] = React.useState("");
+	const handleSubmit = e => {
+		e.preventDefault();
+		if (!value) return;
+		addTodo(value);
+		setValue("");
+	};
+
+
+
+	return (
+		<Form onSubmit={handleSubmit}>
+			<TextInput
 				type="text"
 				className="input"
 				value={value}
@@ -24,6 +24,6 @@ export function TodoForm({ addTodo }) {
 			/>
 
 		</Form>
-    );
-  
-  }
+	);
+
+}
