@@ -1,12 +1,21 @@
 import React from 'react';
+import {
+	Button, Main, Box, Grid,
+} from 'grommet';
+import { Add } from 'grommet-icons';
 import { Todo } from '../Todo/Todo';
 import { TodoForm } from '../AddToDo';
-import { Button, Main, Box, Grid } from 'grommet';
-import { Add } from 'grommet-icons';
 
 export function ToDoList() {
+	const [formOpen, setFormOpen] = React.useState(false);
+	const [todos, setTodos] = React.useState([
+		{
+			text: 'To-Do-List fertig machen',
+			isCompleted: true,
+		},
 
-	const addTodo = text => {
+	]);
+	const addTodo = (text) => {
 		setFormOpen(false);
 		const newTodos = [...todos, { text }];
 		setTodos(newTodos);
@@ -17,71 +26,57 @@ export function ToDoList() {
 		if (todo[index].comments && todo[index].comments.length > 0) {
 			todo[index].comments = [
 				...todo[index].comments,
-				text
+				text,
 			];
 		}
 		todo[index].comments = [
-			text
+			text,
 		];
 		setTodos(todo);
-	}
+	};
 
 	const handleOpenClick = () => {
 		setFormOpen(true);
 	};
 
-	const removeTodo = index => {
+	const removeTodo = (index) => {
 		const newTodos = [...todos];
 		newTodos.splice(index, 1);
 		setTodos(newTodos);
 	};
 
-	const completeTodo = index => {
+	const completeTodo = (index) => {
 		const newTodos = [...todos];
 		newTodos[index].isCompleted = true;
 		setTodos(newTodos);
 	};
 
-	const [formOpen, setFormOpen] = React.useState(false)
-	const [todos, setTodos] = React.useState([
-		{
-			text: "To-Do-List fertig machen",
-			isCompleted: true
-		}
-
-	]);
-
-
-	const Main = (props) => (
-		<Box
-			{...props}
-		/>
-	);
-
 	return (
 
-		<Main className="todo-list" pad="large"
+		<Main
+			className="todo-list"
+			pad="large"
 			background="neutral-2"
 			tag="main"
 		>
 			<Box
-				direction='row'
+				direction="row"
 			>
 				<Button
 					className="hnzü"
 					onClick={handleOpenClick}
 					icon={<Add />}
-					hoverIndicator={{ background: { color: "#3D136D" } }}
+					hoverIndicator={{ background: { color: '#3D136D' } }}
 				/>
 				{formOpen && <TodoForm addTodo={addTodo} />}
 			</Box>
 			<Grid
-				columns='small'
-				gap='small'
+				columns="medium"
+				gap="small"
 			>
 				{todos.map((todo, index) => (
 					<Todo
-						key={index}
+						key={todo.text}
 						index={index}
 						todo={todo}
 						addComment={addComment}
@@ -91,8 +86,6 @@ export function ToDoList() {
 				))}
 
 			</Grid>
-
-
 		</Main>
 	);
 }

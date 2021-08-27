@@ -24,16 +24,19 @@ module.exports = {
 			files: ['*.js'],
 			rules: {
 				'linebreak-style': 'off',
+				'import/prefer-default-export': 'off',
 				'no-tabs': ['error', { allowIndentationTabs: true }],
 				indent: ['error', 'tab'],
 			},
 		},
 		{
-			files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+			files: ['*.jsx', '*.tsx'],
 			rules: {
 				'react/jsx-indent': ['error', 'tab', { checkAttributes: true, indentLogicalExpressions: true }],
 				'react/jsx-indent-props': ['error', 'tab'],
+				'react/prop-types': 'off',
 				'linebreak-style': 'off',
+				'import/prefer-default-export': 'off',
 				'no-tabs': ['error', { allowIndentationTabs: true }],
 				indent: ['error', 'tab'],
 			},
