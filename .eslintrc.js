@@ -19,4 +19,11 @@ module.exports = {
   ],
   rules: {
   },
+  overrides: [
+	{
+		files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+		'linebreak-style': 'error',
+		'no-tabs': ['error', { allowIndentationTabs: true }],
+	}
+  ],
 };
