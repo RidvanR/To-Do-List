@@ -18,10 +18,14 @@ export function Todo({ todo, index, addComment, removeTodo, completeTodo }) {
 			className="todo"
 			style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
 		>
-			<CardHeader>
+			<CardHeader
+				pad="medium"
+			>
 				{todo.text}
 			</CardHeader>
-			<CardBody>
+			<CardBody
+				pad="medium"
+			>
 				{todo.comments && todo.comments.map(text => <Text color="#777777">{text}</Text>)}
 				<form onSubmit={handleSubmit}>
 					<TextInput
@@ -38,6 +42,7 @@ export function Todo({ todo, index, addComment, removeTodo, completeTodo }) {
 			<CardFooter
 				direction="row-reverse"
 				justify="start"
+				pad={{ horizontal: "small" }}
 			>
 				<Button secondary
 					icon={<Close />}
