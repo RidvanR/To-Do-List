@@ -40,7 +40,6 @@ function App() {
 
 		<
 		Header direction = 'row'
-		text - align = 'center'
 		justify = 'center'
 		pad = {
 			{
@@ -58,7 +57,8 @@ function App() {
 		}
 
 		>
-		< Heading > To Do Liste  </Heading></Header>
+		<
+		Heading > To Do Liste < /Heading></Header >
 
 
 
