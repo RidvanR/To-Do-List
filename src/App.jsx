@@ -4,7 +4,11 @@ import {
 	Header,
 	Heading,
 	Grid,
+	Footer,
+	Text,
+	Button,
 } from 'grommet';
+import { Github } from 'grommet-icons';
 import {
 	ToDoList,
 } from './components/TodoList/TodoList';
@@ -47,6 +51,12 @@ function App() {
 					<Heading>To Do Liste</Heading>
 				</Header>
 				<ToDoList />
+				<Footer background="brand" pad="medium">
+					<Text>Ridvan® 2021</Text>
+					<Button
+						icon={<Github />}
+					/>
+				</Footer>
 			</Grid>
 		</Grommet>
 	);

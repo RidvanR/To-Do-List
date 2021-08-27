@@ -16,6 +16,7 @@ export function Todo({
 	};
 	return (
 		<Card
+			background="#555555"
 			className="todo"
 			style={{ textDecoration: todo.isCompleted ? 'line-through' : '' }}
 		>
@@ -25,6 +26,7 @@ export function Todo({
 				{todo.text}
 			</CardHeader>
 			<CardBody
+				background="#555555"
 				pad="medium"
 				gap="small"
 			>
@@ -39,6 +41,7 @@ export function Todo({
 				</form>
 			</CardBody>
 			<CardFooter
+				background="#777777"
 				pad={{ horizontal: 'small' }}
 				justify="between"
 			>

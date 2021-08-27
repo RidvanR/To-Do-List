@@ -9,10 +9,6 @@ import { TodoForm } from '../AddToDo';
 export function ToDoList() {
 	const [formOpen, setFormOpen] = React.useState(false);
 	const [todos, setTodos] = React.useState([
-		{
-			text: 'To-Do-List fertig machen',
-			isCompleted: true,
-		},
 
 	]);
 	const addTodo = (text) => {
@@ -57,7 +53,7 @@ export function ToDoList() {
 		<Main
 			className="todo-list"
 			pad="large"
-			background="neutral-2"
+			background="transparent"
 			tag="main"
 		>
 			<Box
@@ -67,7 +63,7 @@ export function ToDoList() {
 					className="hnzü"
 					onClick={handleOpenClick}
 					icon={<Add />}
-					hoverIndicator={{ background: { color: '#3D136D' } }}
+					hoverIndicator={{ background: { color: 'dark-2' } }}
 				/>
 				{formOpen && <TodoForm addTodo={addTodo} />}
 			</Box>
