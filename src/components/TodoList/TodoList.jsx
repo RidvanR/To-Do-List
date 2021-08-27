@@ -28,10 +28,11 @@ export function ToDoList() {
 				...todo[index].comments,
 				text,
 			];
+		} else {
+			todo[index].comments = [
+				text,
+			];
 		}
-		todo[index].comments = [
-			text,
-		];
 		setTodos(todo);
 	};
 
