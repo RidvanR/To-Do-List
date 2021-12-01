@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 import {
 	Grommet,
 	Header,
@@ -9,7 +10,6 @@ import {
 	Button,
 } from 'grommet';
 import { Github } from 'grommet-icons';
-import { db } from './firebase';
 import {
 	ToDoList,
 } from './components/TodoList/TodoList';
@@ -26,7 +26,6 @@ function App() {
 		},
 
 	};
-	console.log(db);
 	return (
 		<Grommet theme={theme}>
 

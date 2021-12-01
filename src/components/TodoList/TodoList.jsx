@@ -62,8 +62,8 @@ export function ToDoList() {
 				<Button
 					className="hnzü"
 					onClick={handleOpenClick}
-					icon={<Add />}
-					hoverIndicator={{ background: { color: 'dark-2' } }}
+					icon={<Add color="dark-3" />}
+					hoverIndicator={{ background: { color: 'dark-4' } }}
 				/>
 				{formOpen && <TodoForm addTodo={addTodo} />}
 			</Box>
